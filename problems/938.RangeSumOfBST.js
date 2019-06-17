@@ -11,15 +11,21 @@
  * @param {number} R
  * @return {number}
  */
-const rangeSumBST = function (root, L, R) {
-  const payload = { sum: 0 }
-  traverse(root, payload, L, R)
-  return payload.sum
-}
+let rangeSumBST = function (root, L, R) {
+  let sum = 0
+  traverse(root, L, R)
+  return sum
 
-function traverse (node, obj, L, R) {
-  if (node == null) return
-  if (node.val >= L && node.val <= R) obj.sum += node.val
-  traverse(node.left, obj, L, R)
-  traverse(node.right, obj, L, R)
+  function traverse (node, L, R) {
+    if (node == null) {
+      return 0
+    }
+
+    if (node.val >= L && node.val <= R) {
+      sum += node.val
+    }
+
+    traverse(node.left, L, R)
+    traverse(node.right, L, R)
+  }
 }
